@@ -1,10 +1,8 @@
-
 const unsortedArray = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
 const unsortedArrayWeird = [9, 2, 8, 5, 6, 1, 4, 3, 7, 10, 1, 8];
 
-
 //--------------------
-// Bubble sort
+// Bubble sort (comparison, in-place)
 //--------------------
 
 function swap(arr, i, j) {
@@ -16,7 +14,7 @@ function swap(arr, i, j) {
 }
 
 // Version 1: inefficient
-function bubbleSort_1(arr) {
+const bubbleSort_1 = arr => {
   // i itself is not directly used as array index; it's only used as counter to do the pass n times.
   // Why n times? In the worst case where the smallest value is on the rightmost (last) index: we will need to do the swap n times, so that the small value will bubble down until the first array index.
   for (let i = 0; i < arr.length; i++) {
@@ -28,14 +26,14 @@ function bubbleSort_1(arr) {
     }
   }
   return arr;
-}
-// But... the problem is: maybe two passes are enought to sort the array, if it's mot too unsorted! Solution: stop after the first pass where no swap is needed. Because if no swap is needed, it means the array is already sorted.
+};
+// But... the problem is: maybe two passes are enough to sort the array, if it's not too unsorted! Solution: stop after the first pass where no swap is needed. Because if no swap is needed, it means the array is already sorted.
 
 // Version 2: more efficient
 function bubbleSort_2(arr) {
   do {
     swapped = false;
-    for (let i = 0; i < arr.length - 1; i++) {
+    for (let i = 0; i < arr.length; i++) {
       // i replaces inner loops (equivalent of j in bubbleSort_1)
       if (arr[i] > arr[i + 1]) {
         swapped = true;
@@ -51,14 +49,13 @@ function bubbleSort_2(arr) {
 // console.log(bubbleSort_2([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]));
 // console.log(bubbleSort_2([9, 2, 8, 5, 6, 1, 4, 3, 7, 10, 1, 8]));
 
-
 //--------------------
-// Selection sort
+// Selection sort (comparison-based)
 //--------------------
 
 function selectionSort(arr) {
-  for (let i = 0; i < arr.length - 1; i++) {
-    subArr = arr.slice(i)
+  for (let i = 0; i < arr.length; i++) {
+    subArr = arr.slice(i);
     min = Math.min(...subArr);
     minIndex = i + subArr.indexOf(min);
     arr = swap(arr, i, minIndex);
@@ -69,26 +66,17 @@ function selectionSort(arr) {
 // console.log(selectionSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]));
 // console.log(selectionSort([9, 2, 8, 5, 6, 1, 4, 3, 7, 10, 1, 8]));
 
-
 //--------------------
 // Insertion sort
 //--------------------
 
-
-
-
 // console.log(iSort([9, 2, 5, 6, 4, 3, 7, 10, 1, 8]));
-
-
 
 // *** How to break out of a for loop? Use return? NO: return will really returns out of the function!!!!
 // *** How to break out of a for loop? Don't use a for loop, use while instead
-
 
 function qs(arr) {
   let lesser = [];
   let greater = [];
   let pivot = arr[0];
-
-  
 }
