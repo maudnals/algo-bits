@@ -8,7 +8,6 @@ const unsortedArrayWeird = [9, 2, 8, 5, 6, 1, 4, 3, 7, 10, 1, 8];
 //--------------------
 
 function swapInPlace(arr, i, j) {
-  // swap in-place
   const temp = arr[i];
   arr[i] = arr[j];
   arr[j] = temp;
