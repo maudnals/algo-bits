@@ -48,8 +48,8 @@ function bubbleSort_2(arr) {
   return arr;
 }
 
-console.log(bubbleSort_2([...unsortedArray]));
-console.log(bubbleSort_2([...unsortedArrayWeird]));
+// console.log(bubbleSort_2([...unsortedArray]));
+// console.log(bubbleSort_2([...unsortedArrayWeird]));
 
 //--------------------
 // Insertion sort
@@ -59,24 +59,19 @@ console.log(bubbleSort_2([...unsortedArrayWeird]));
 
 const insertionSort = arr => {
   const len = arr.length;
-  // gotcha: can start at 1
-  for (let i = 1; i < len; i++) {
-    const toInsert = arr[i];
-    let insertionIndex = i - 1;
-    while (arr[insertionIndex] > toInsert) {
-      // don't move anything, simply find the right insertion index
-      insertionIndex--;
-    }
-    if (insertionIndex < 0) {
-      insertionIndex = 0;
-    }
-    arr[insertionIndex] = toInsert;
-    console.log("*", toInsert);
-    console.log(insertionIndex);
-    console.log("----");
+  for (let i = 0; i < len; i++) {
+    // slice doesn't mutate (splice does, it has a P like Phuck)
+    const sliced = arr.slice(i, len);
+    const min = Math.min(...sliced);
+    // gotcha: arr.indexOf(min) won't work if array has duplicated; need to
+    // get the index of the min via the sliced array instead
+    swapInPlace(arr, i, i + sliced.indexOf(min));
   }
   return arr;
 };
+
+console.log(insertionSort([...unsortedArray]));
+console.log(insertionSort([...unsortedArrayWeird]));
 
 //--------------------
 // Selection sort (comparison, in-place, "scan subArray and swap")
